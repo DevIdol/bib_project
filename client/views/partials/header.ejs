@@ -1,0 +1,25 @@
+<div class="l-inner">
+  <h1><a href="/">LOGO</a></h1>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/pets">Pet</a></li>
+      <% if (typeof token !== 'undefined') { %>
+      <li><a href="/favorites">Favorite</a></li>
+      <li>
+        <form action="/logout" method="post">
+          <input type="submit" value="Logout" />
+        </form>
+      </li>
+      <% } else{ %>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+      <% } %>
+    </ul>
+  </nav>
+  <div class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
