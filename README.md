@@ -1,4 +1,4 @@
-# BIB_Nodejs_Register, Login, Forgot-Password
+# BIB_Project_Register, Login, Forgot-Password
 
 - **.env file**
 
@@ -33,9 +33,8 @@ localhost:8000
 - **Installation**
 
 ```
-git clone git@github.com:DevIdol/BIB_Nodejs.git
-cd BIB_Nodejs
-cd "bib_project"
+git clone git@github.com:DevIdol/bib_project.git
+cd bib_project
 yarn
 yarn dev
 
