@@ -3,11 +3,12 @@ import passport from "passport";
 
 export const isVerified = passport.authenticate("jwt", { session: false });
 
-export const isUser = (req: Request, res: Response, next: NextFunction) => {
+export const isUser = (req: any, res: any, next: any) => {
   let token = req.cookies.access_token;
   if (token) {
-    isVerified(req, res, () => {
-      if (req.user) {
+    isVerified(req, res, next, () => {
+      if (req.user._id === req.params.id || req.user.isAdmin) {
+        console.log(req.user)
         return next();
       } else {
         res.redirect("/");

@@ -1,5 +1,5 @@
 import express, { Router, Request, Response, NextFunction } from "express";
-import { isAdmin, isUser } from "../middlewares/IsAuth";
+import { isAdmin, isUser } from '../middlewares/IsAuth';
 
 const renderRoute: Router = express.Router();
 
@@ -21,7 +21,7 @@ renderRoute.get(
   "/register",
   (req: Request, res: Response, next: NextFunction) => {
     let token = req.cookies.access_token;
-    !token && res.render("register", { token });
+    !token && res.render("register");
     token && res.redirect("/");
   }
 );
@@ -29,7 +29,7 @@ renderRoute.get(
 //show login form
 renderRoute.get("/login", (req: Request, res: Response, next: NextFunction) => {
   let token = req.cookies.access_token;
-  !token && res.render("login", { token });
+  !token && res.render("login");
   token && res.redirect("/");
 });
 

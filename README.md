@@ -9,8 +9,8 @@ MONGODB = mongodb://localhost:27017/bib_project
 SALT = 12
 
 BASE_URL = http://localhost:8000
-MAIL_CENTER = devidol.mm@gmail.com
-MAIL_PASS = eleawzuaucxvbqei
+MAIL_CENTER = petadoption.mm@gmail.com
+MAIL_PASS = ozoiaelkkidcysom
 HOST = smtp.gmail.com
 MAIL_PORT = 587
 SECURE = true
