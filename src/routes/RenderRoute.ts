@@ -43,6 +43,17 @@ renderRoute.get(
   }
 );
 
+//show manage account
+renderRoute.get(
+  "/manage-account",
+  isUser,
+  (req: Request, res: Response, next: NextFunction) => {
+    let token = req.cookies.access_token;
+    token && res.render("manage-account", { user: req.user, token });
+    !token && res.redirect("/");
+  }
+);
+
 //show dashboard
 renderRoute.get(
   "/dashboard",

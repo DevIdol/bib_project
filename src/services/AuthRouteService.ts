@@ -6,7 +6,6 @@ import jwt from "jsonwebtoken";
 import passport from "passport";
 import { VerifyEmail } from "../utils/VerifyEmail";
 
-
 //register service
 export const registerService = async (
   req: Request,
@@ -124,6 +123,7 @@ export const logoutService = async (
 ) => {
   try {
     res.clearCookie("access_token");
+    req.flash("success", "Logged out Success!");
     res.redirect("/");
   } catch (error: any) {
     console.log(error);
