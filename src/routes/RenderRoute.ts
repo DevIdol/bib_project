@@ -56,12 +56,12 @@ renderRoute.get(
 
 //show dashboard
 renderRoute.get(
-  "/dashboard",
+  "/admin-dashboard",
   isAdmin,
   (req: Request, res: Response, next: NextFunction) => {
     let token = req.cookies.access_token;
     let user: any = req.user;
-    res.render("dashbard", { user, token });
+    res.render("admin-dashbard", { user, token });
   }
 );
 

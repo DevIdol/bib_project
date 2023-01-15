@@ -3,6 +3,7 @@ export interface CreateUser {
   email: String;
   password: String;
   profile?: String;
+  favorites?: any[];
   verified?: Boolean;
   isAdmin?: Boolean;
 }

@@ -23,6 +23,12 @@ const UserSchema = new Schema({
     type: String,
     default: "",
   },
+  favorites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Pet",
+    },
+  ],
   verified: {
     type: Boolean,
     default: false,

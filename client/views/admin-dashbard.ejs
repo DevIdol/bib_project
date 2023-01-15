@@ -5,10 +5,12 @@
   </head>
   <body>
     <header><%- include('./partials/header.ejs') %></header>
-    <section>
-      <h2>Dashboard</h2>
-      <p><%= user.username  %> </p>
-      <p><%= user.email  %> </p>
+    <section class="home-sec">
+      <div class="l-inner">
+        <h2>Admin Panel</h2>
+        <h5>Name: <%= user.username %></h5>
+        <h5>Email: <%= user.email %></h5>
+      </div>
     </section>
     <%- include('./partials/script.ejs') %>
   </body>
