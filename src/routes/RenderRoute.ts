@@ -53,7 +53,6 @@ renderRoute.get(
       const user: any = req.user;
       const users = await User.findById(user._id);
       res.render("account", { user: users, token });
-      console.log(users);
     } catch (error) {
       console.log(error);
     }

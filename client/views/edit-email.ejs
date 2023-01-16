@@ -15,7 +15,7 @@
         </div>
         <form action="/users/<%= user._id  %>?_method=PUT" method="post">
           <input
-            type="text"
+            type="email"
             name="email"
             placeholder="<%= user.email  %>"
             required
@@ -23,8 +23,7 @@
           <input class="btn" type="Submit" value="Submit" />
         </form>
         <div class="form-text">
-          <p></p>
-          <p>Back to <a href="/">Home</a></p>
+          <p><a href="/account">Back</a></p>
         </div>
       </div>
     </section>
