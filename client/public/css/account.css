@@ -1,0 +1,83 @@
+.account-sec {
+  padding-top: 120px;
+}
+
+.account-sec .account-wrapper {
+  background-color: var(--background);
+  border-radius: 6px;
+  width: 60%;
+  padding: 20px;
+  margin: 0 auto;
+}
+.account-wrapper h2 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.username-wrapper,
+.email-wrapper,
+.password-wrapper {
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.account-wrapper h3 {
+  font-weight: 500;
+}
+
+.username,
+.email,
+.password {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.password h4 span {
+  font-size: 20px;
+}
+
+.username h4,
+.email h4,
+.password h4 {
+  align-self: center;
+  align-items: flex-end;
+  font-weight: 500;
+}
+
+.email-wrapper {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+}
+
+.account-wrapper .edit a i {
+  color: #6d6b6b;
+}
+.account-wrapper .edit a i:hover {
+  color: var(--btn-color);
+  transition: var(--transition);
+}
+
+@media screen and (max-width: 768px) {
+  .account-sec .account-wrapper {
+    width: 96%;
+  }
+  .username-wrapper,
+  .email-wrapper,
+  .password-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+  .username,
+  .email,
+  .password {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -2,6 +2,7 @@ import express, { Express, Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import methodOverride from "method-override";
 import cors from "cors";
 import path from "path";
 import { logger } from "./logger/Logger";
@@ -30,6 +31,7 @@ connectDB();
 //middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.use(cors());
 app.use(cookieParser());
 app.use(
@@ -53,6 +55,7 @@ app.use("/", renderRoute);
 
 app.use("/", authRoute);
 app.use("/users", userRoute);
+app.use("/account", userRoute);
 app.use("/forgot-password", resetPassRoute);
 
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));

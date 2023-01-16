@@ -1,5 +1,6 @@
 import express, { Router, Request, Response, NextFunction } from "express";
-import { isAdmin, isUser } from '../middlewares/IsAuth';
+import User from "../models/UserModel";
+import { isAdmin, isUser } from "../middlewares/IsAuth";
 
 const renderRoute: Router = express.Router();
 
@@ -9,12 +10,11 @@ renderRoute.get("/", (req: Request, res: Response, next: NextFunction) => {
   res.render("index", { token });
 });
 
+//show pets
 renderRoute.get("/pets", (req: Request, res: Response, next: NextFunction) => {
   let token = req.cookies.access_token;
   res.render("pet", { token });
 });
-
-//show pets
 
 //show register form
 renderRoute.get(
@@ -43,25 +43,31 @@ renderRoute.get(
   }
 );
 
-//show manage account
+// show manage account
 renderRoute.get(
-  "/manage-account",
+  "/account",
   isUser,
-  (req: Request, res: Response, next: NextFunction) => {
-    let token = req.cookies.access_token;
-    token && res.render("manage-account", { user: req.user, token });
-    !token && res.redirect("/");
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const token = req.cookies.access_token;
+      const user: any = req.user;
+      const users = await User.findById(user._id);
+      res.render("account", { user: users, token });
+      console.log(users);
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 
 //show dashboard
 renderRoute.get(
-  "/admin-dashboard",
+  "/admin",
   isAdmin,
   (req: Request, res: Response, next: NextFunction) => {
     let token = req.cookies.access_token;
     let user: any = req.user;
-    res.render("admin-dashbard", { user, token });
+    res.render("admin", { user, token });
   }
 );
 
@@ -70,8 +76,17 @@ renderRoute.get(
   "/forgot-password",
   (req: Request, res: Response, next: NextFunction) => {
     let token = req.cookies.access_token;
-    res.render("forgot-password", { token });
+    if (!token) {
+      res.render("forgot-password");
+    } else {
+      res.render("not-found", { error: "Page Not Found!" });
+    }
   }
 );
+//=================
+// Manage User
+// ================
+
+//Edit From Load
 
 export default renderRoute;

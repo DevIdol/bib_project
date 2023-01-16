@@ -26,7 +26,7 @@ $(document).ready(function () {
 
     $("#show-password").change(function () {
         $(this).prop("checked")
-            ? $("#password, #confirmPass").prop("type", "text")
-            : $("#password, #confirmPass").prop("type", "password");
+            ? $("#password, #confirmPass, #currentPassword").prop("type", "text")
+            : $("#password, #confirmPass, #currentPassword").prop("type", "password");
     });
 });
