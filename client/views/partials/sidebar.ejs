@@ -1,0 +1,11 @@
+<div class="side-bar">
+  <a href="/personal-info">Personal Info</a>
+  <a href="/setting">Setting</a>
+  <% if (user.isAdmin) { %>
+  <a href="/admin">Dashboard</a>
+  <a href="/create-pet">Create Pet</a>
+  <% } %>
+  <form action="/logout" method="post">
+    <input type="submit" value="Logout" />
+  </form>
+</div>

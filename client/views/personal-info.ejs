@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('./partials/head.ejs', {title: "Pet Adoption | Manage Account",
+    <%- include('./partials/head.ejs', {title: "Pet Adoption | Personal Info",
     token }) %>
   </head>
 
@@ -9,7 +9,9 @@
     <header><%- include('./partials/header.ejs') %></header>
     <section class="account-sec">
       <div class="l-inner">
-        <div class="account-wrapper">
+        <%- include('./partials/sidebar.ejs', {user}) %>
+       <div class="account-wrapper">
+        <div class="personal-info">
           <h2>Personal Info:</h2>
           <div class="alert-wrapper">
             <%- include('./partials/messages.ejs') %>
@@ -19,7 +21,7 @@
             <div class="username">
               <h4><%= user.username %></h4>
               <p class="edit">
-                <a href="/account/edit-username/<%= user._id  %>"
+                <a href="/personal-info/edit-username/<%= user._id  %>"
                   ><i class="fa fa-pen"></i
                 ></a>
               </p>
@@ -30,7 +32,7 @@
             <div class="email">
               <h4><%= user.email %></h4>
               <p class="edit">
-                <a href="/account/edit-email/<%= user._id  %>"
+                <a href="/personal-info/edit-email/<%= user._id  %>"
                   ><i class="fa fa-pen"></i
                 ></a>
               </p>
@@ -48,13 +50,14 @@
                 <span>•</span>
               </h4>
               <p class="edit">
-                <a href="/account/edit-password/<%= user._id  %>"
+                <a href="/personal-info/edit-password/<%= user._id  %>"
                   ><i class="fa fa-pen"></i
                 ></a>
               </p>
             </div>
           </div>
         </div>
+       </div>
       </div>
     </section>
     <%- include('./partials/script.ejs') %>

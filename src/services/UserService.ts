@@ -115,11 +115,69 @@ export const updateUserService = async (
       { new: true }
     );
     req.flash("success", "Updated Success!");
-    res.redirect("/account");
+    res.redirect("/personal-info");
   } catch (error: any) {
     console.log(error);
   }
 };
+
+//user setting
+export const userSettingService = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const token = req.cookies.access_token;
+  const user: any = req.user;
+  let { username, email, currentPassword, password } = req.body;
+  let errors: any[] = [];
+  try {
+    let users: any = await User.findById(user._id);
+    console.log(user);
+    console.log(users);
+    if (!username || !email || !currentPassword || !password) {
+      errors.push({ message: "Input fields can't be empty!" });
+    }
+    const verifiedPassword = await bcrypt.compare(
+      currentPassword,
+      users.password
+    );
+    if (!verifiedPassword) {
+      errors.push({ message: "Current password is wrong!" });
+    }
+    if (password.length < 6) {
+      errors.push({ message: "Password should be at least 6 characters!" });
+    }
+    if (errors.length > 0) {
+      res.render("setting", {
+        errors,
+        username,
+        email,
+        currentPassword,
+        password,
+        user,
+        token,
+      });
+    } else {
+      if (req.body.password) {
+        const salt = await bcrypt.genSalt(Number(process.env.SALT));
+        req.body.password = await bcrypt.hash(req.body.password, salt);
+        await User.findByIdAndUpdate(
+          user._id,
+          {
+            $set: req.body,
+          },
+          { new: true }
+        );
+        req.flash("success", "Updated Success!");
+        res.redirect("/setting");
+      }
+    }
+  } catch (error: any) {
+    console.log(error);
+  }
+};
+
 //change password
 export const updateUserPasswordService = async (
   req: Request,
@@ -131,7 +189,10 @@ export const updateUserPasswordService = async (
   const { currentPassword, password, confirmPass } = req.body;
   let errors: any[] = [];
   try {
-    const verifiedPassword = await bcrypt.compare(currentPassword, user.password);
+    const verifiedPassword = await bcrypt.compare(
+      currentPassword,
+      user.password
+    );
     if (!currentPassword || !password || !confirmPass) {
       errors.push({ message: "Input fields can't be empty!" });
     }
@@ -157,7 +218,36 @@ export const updateUserPasswordService = async (
       user.password = password;
       await user.save();
       req.flash("success", "Password changed successfully!");
-      res.redirect("/account");
+      res.redirect("/personal-info");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//delete user
+export const deleteUserService = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  let errors: any[] = [];
+  const token = req.cookies.access_token;
+  const user: any = req.user;
+  try {
+    let { password } = req.body;
+    let users: any = await User.findOne({ _id: req.params.id });
+    const verifiedPassword = await bcrypt.compare(password, users.password);
+    if (!verifiedPassword) {
+      errors.push({ message: "Enter Your Password!" });
+    }
+    if (errors.length > 0) {
+      res.render("setting", { errors, password, token, user });
+    } else {
+      await User.findByIdAndDelete(req.params.id);
+      res.clearCookie("access_token");
+      req.flash("success", "Your account is deleted!");
+      res.redirect("/");
     }
   } catch (error) {
     console.log(error);

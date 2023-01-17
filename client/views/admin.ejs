@@ -7,9 +7,12 @@
     <header><%- include('./partials/header.ejs') %></header>
     <section class="home-sec">
       <div class="l-inner">
-        <h2>Admin Panel</h2>
-        <h5>Name: <%= user.username %></h5>
-        <h5>Email: <%= user.email %></h5>
+        <%- include('./partials/sidebar.ejs', {user}) %>
+        <div class="account-wrapper">
+          <h2>Admin Panel</h2>
+          <h5>Name: <%= user.username %></h5>
+          <h5>Email: <%= user.email %></h5>
+        </div>
       </div>
     </section>
     <%- include('./partials/script.ejs') %>

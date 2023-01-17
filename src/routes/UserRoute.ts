@@ -7,6 +7,8 @@ import {
   updateUser,
   editUserPassword,
   updateUserPassword,
+  userSetting,
+  deleteUser,
 } from "../controllers/UserController";
 import { isAdmin, isUser } from "../middlewares/IsAuth";
 
@@ -25,6 +27,10 @@ userRoute.get("/edit-password/:id", isUser, editUserPassword);
 
 //update user
 userRoute.put("/:id", isUser, updateUser);
+userRoute.put("/:id", isUser, userSetting);
 userRoute.post("/:id", isUser, updateUserPassword);
+
+//delete user
+userRoute.delete("/:id", isUser, deleteUser);
 
 export default userRoute;

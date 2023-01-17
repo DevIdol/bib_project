@@ -55,7 +55,7 @@ app.use("/", renderRoute);
 
 app.use("/", authRoute);
 app.use("/users", userRoute);
-app.use("/account", userRoute);
+app.use("/personal-info", userRoute);
 app.use("/forgot-password", resetPassRoute);
 
 app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));

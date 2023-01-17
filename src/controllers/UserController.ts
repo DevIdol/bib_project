@@ -7,6 +7,8 @@ import {
   editUserEmailService,
   updateUserPasswordService,
   editUserPasswordService,
+  deleteUserService,
+  userSettingService,
 } from "../services/UserService";
 
 //verify email
@@ -62,6 +64,15 @@ export const updateUser = async (
   updateUserService(req, res, next);
 };
 
+// user setting
+export const userSetting = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  userSettingService(req, res, next);
+};
+
 //update password
 export const updateUserPassword = async (
   req: Request,
@@ -69,4 +80,13 @@ export const updateUserPassword = async (
   next: NextFunction
 ) => {
   updateUserPasswordService(req, res, next);
+};
+
+//delete user
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  deleteUserService(req, res, next);
 };

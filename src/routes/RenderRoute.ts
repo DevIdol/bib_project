@@ -45,14 +45,30 @@ renderRoute.get(
 
 // show manage account
 renderRoute.get(
-  "/account",
+  "/personal-info",
   isUser,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const token = req.cookies.access_token;
       const user: any = req.user;
       const users = await User.findById(user._id);
-      res.render("account", { user: users, token });
+      res.render("personal-info", { user: users, token });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+// show setting
+renderRoute.get(
+  "/setting",
+  isUser,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const token = req.cookies.access_token;
+      const user: any = req.user;
+      const users = await User.findById(user._id);
+      res.render("setting", { user: users, token });
     } catch (error) {
       console.log(error);
     }

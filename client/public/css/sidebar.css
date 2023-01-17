@@ -1,0 +1,36 @@
+/* Account Side Bar */
+.side-bar {
+  height: 100vh;
+  width: 260px;
+  position: fixed;
+  z-index: 1;
+  top: 60px;
+  left: 0;
+  background-color: var(--background);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.side-bar a {
+  padding: 12px 20px 12px 60px;
+  text-decoration: none;
+  color: var(--font-color);
+  display: block;
+  font-size: 18px;
+}
+
+.side-bar a:hover,
+.side-bar form button:hover {
+  color: #0f0f0f;
+  transition: 0.6s ease;
+  font-weight: 500;
+}
+
+.side-bar form input {
+  color: var(--font-color);
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  padding-top: 10px;
+  padding-left: 60px;
+}
