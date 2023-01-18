@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import {
   editUsernameService,
-  getUsersService,
   updateUserService,
   verifyEmailService,
   editUserEmailService,
@@ -20,14 +19,6 @@ export const verifyEmail = async (
   verifyEmailService(req, res, next);
 };
 
-//get users
-export const getUsers = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  getUsersService(req, res, next);
-};
 
 //show update user form
 export const editUsername = async (

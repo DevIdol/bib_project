@@ -5,13 +5,45 @@
   </head>
   <body>
     <header><%- include('./partials/header.ejs') %></header>
-    <section class="home-sec">
+    <section class="account-sec">
       <div class="l-inner">
         <%- include('./partials/sidebar.ejs', {user}) %>
         <div class="account-wrapper">
-          <h2>Admin Panel</h2>
-          <h5>Name: <%= user.username %></h5>
-          <h5>Email: <%= user.email %></h5>
+          <div class="admin">
+            <h2>Admin Dashboard</h2>
+            <div class="card-wrapper">
+              <div class="card-count">
+                <h3>User Count</h3>
+                <% if (typeof users !== "undefined") { %>
+                <h4><%= users.length %></h4>
+                <% } %>
+              </div>
+              <div class="card-count">
+                <h3>Pet Count</h3>
+                <% if (typeof pets !== "undefined") { %>
+                <h4><%= users.length %></h4>
+                <% } else{%>
+                <h4>0</h4>
+                <% } %>
+              </div>
+              <div class="card-count">
+                <h3>Pet Count</h3>
+                <% if (typeof pets !== "undefined") { %>
+                <h4><%= users.length %></h4>
+                <% } else{%>
+                <h4>0</h4>
+                <% } %>
+              </div>
+              <div class="card-count">
+                <h3>Pet Count</h3>
+                <% if (typeof pets !== "undefined") { %>
+                <h4><%= users.length %></h4>
+                <% } else{%>
+                <h4>0</h4>
+                <% } %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

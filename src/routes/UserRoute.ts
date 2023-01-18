@@ -1,7 +1,6 @@
 import express, { Router } from "express";
 import {
   verifyEmail,
-  getUsers,
   editUsername,
   editUserEmail,
   updateUser,
@@ -10,15 +9,12 @@ import {
   userSetting,
   deleteUser,
 } from "../controllers/UserController";
-import { isAdmin, isUser } from "../middlewares/IsAuth";
+import { isUser } from "../middlewares/IsAuth";
 
 const userRoute: Router = express.Router();
 
 //verify email
 userRoute.get("/:id/verify/:token", verifyEmail);
-
-//get users
-userRoute.get("/", isAdmin, getUsers);
 
 //show update user form
 userRoute.get("/edit-username/:id", isUser, editUsername);

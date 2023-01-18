@@ -35,22 +35,6 @@ export const verifyEmailService = async (
   }
 };
 
-//get users
-export const getUsersService = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const users = await User.find();
-    res.json({
-      data: users,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 //show update username form
 export const editUsernameService = async (
   req: Request,

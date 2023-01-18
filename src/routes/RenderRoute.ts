@@ -79,10 +79,12 @@ renderRoute.get(
 renderRoute.get(
   "/admin",
   isAdmin,
-  (req: Request, res: Response, next: NextFunction) => {
-    let token = req.cookies.access_token;
-    let user: any = req.user;
-    res.render("admin", { user, token });
+  async (req: Request, res: Response, next: NextFunction) => {
+    const token = req.cookies.access_token;
+    const user = req.user;
+    const users = await User.find();
+    console.log(users);
+    res.render("admin", { user, users, token });
   }
 );
 
